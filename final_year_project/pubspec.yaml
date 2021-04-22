@@ -1,0 +1,34 @@
+name: final_year_project
+description: Student Wellbeing Application as part of my Final Year Project
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  firebase_core: ^0.3.4
+  firebase_auth: ^0.8.4+4
+  cloud_firestore: ^0.9.13+1
+  modal_progress_hud: ^0.1.3
+  flutter_linkify: ^5.0.2
+  url_launcher: ^6.0.3
+  mailto: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+
+  uses-material-design: true
+
+  assets:
+    - images/
+
+
