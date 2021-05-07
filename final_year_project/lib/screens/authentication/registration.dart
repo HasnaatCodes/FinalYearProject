@@ -1,9 +1,8 @@
 import 'package:final_year_project/screens/check_in.dart';
 import 'package:final_year_project/components/show_alert.dart';
-import 'package:final_year_project/screens/welcome.dart';
 import 'package:flutter/material.dart';
-import '../components/round_button.dart';
-import '../constants.dart';
+import '../../components/round_button.dart';
+import '../../constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
@@ -39,6 +38,15 @@ class _Registration extends State<Registration> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              // Flexible(
+              //   child: Hero(
+              //     tag: 'logo',
+              //     child: Container(
+              //       height: 200.0,
+              //       child: Image.asset('images/logo.png'),
+              //     ),
+              //   ),
+              // ),
               Flexible(
                 child: Text(
                   'Registration',
@@ -119,6 +127,7 @@ class _Registration extends State<Registration> {
                         email: email, password: password);
                     if (newUser != null) {
                       //Successfully created User
+                      Navigator.popUntil(context, (route) => false);
                       Navigator.pushNamed(context, CheckIn.id);
                     }
                     setState(() {
@@ -139,13 +148,15 @@ class _Registration extends State<Registration> {
                   }
                 },
               ),
-              ShowAlertWidget(
-                error: error,
-                onPressed: () {
-                  setState(() {
-                    error = null;
-                  });
-                },
+              Flexible(
+                child: ShowAlertWidget(
+                  error: error,
+                  onPressed: () {
+                    setState(() {
+                      error = null;
+                    });
+                  },
+                ),
               ),
             ],
           ),

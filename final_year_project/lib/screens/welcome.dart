@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'registration.dart';
-import 'login.dart';
+import 'authentication/registration.dart';
+import 'authentication/login.dart';
 import '../components/round_button.dart';
 
 class Welcome extends StatefulWidget {

@@ -1,4 +1,5 @@
-import 'package:final_year_project/screens/main_drawer.dart';
+import 'package:final_year_project/components/main_drawer.dart';
+import 'package:final_year_project/screens/posts/post_comment.dart';
 
 import '../screens/help_pages/financial_help.dart';
 import '../screens/help_pages/general_help.dart';
@@ -56,7 +57,6 @@ class _NegativeReasonState extends State<NegativeReason> {
               colour: Colors.red.shade300,
               title: 'Academic Stress',
               onPressed: () {
-                // TODO academic help pages
                 Navigator.pushNamed(context, GeneralHelp.id);
               },
             ),
@@ -64,15 +64,13 @@ class _NegativeReasonState extends State<NegativeReason> {
               colour: Colors.red.shade300,
               title: 'Loneliness',
               onPressed: () {
-                // TODO posting page
-                // Navigator.pushNamed(context, Registration.id);
+                Navigator.pushNamed(context, PostComment.id);
               },
             ),
             RoundButton(
               colour: Colors.red.shade300,
               title: 'Other',
               onPressed: () {
-                // TODO general pages
                 // Navigator.pushNamed(context, Registration.id);
               },
             ),

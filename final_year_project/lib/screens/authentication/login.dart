@@ -1,11 +1,11 @@
 import 'package:final_year_project/components/show_alert.dart';
 import 'package:final_year_project/screens/check_in.dart';
 import 'package:flutter/material.dart';
-import '../components/round_button.dart';
-import '../constants.dart';
+import '../../components/round_button.dart';
+import '../../constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'welcome.dart';
+import 'package:flutter/services.dart';
 
 class Login extends StatefulWidget {
   static const String id = 'login_screen';
@@ -90,18 +90,19 @@ class _LoginState extends State<Login> {
                         email: email, password: password);
                     if (user != null) {
                       //Successfully logged in
+                      Navigator.popUntil(context, (route) => false);
                       Navigator.pushNamed(context, CheckIn.id);
                     }
-                  } catch (e) {
-                    print(e.code);
+                  } catch (errorCode) {
+                    print(errorCode);
                     setState(() {
                       loadingSpinner = false;
-                      if (e.code == 'ERROR_USER_NOT_FOUND') {
+                      if (errorCode == 'ERROR_USER_NOT_FOUND') {
                         error = 'Email not found';
-                      } else if (e.code == 'ERROR_WRONG_PASSWORD') {
+                      } else if (errorCode == 'ERROR_WRONG_PASSWORD') {
                         error = 'Incorrect password';
                       } else {
-                        error = e.message;
+                        error = errorCode;
                       }
                     });
                   }
@@ -109,7 +110,7 @@ class _LoginState extends State<Login> {
                 //Go to login screen.
               ),
               SizedBox(
-                height: 100.0,
+                height: 65.0,
               ),
               ShowAlertWidget(
                 error: error,

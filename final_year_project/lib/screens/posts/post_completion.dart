@@ -1,23 +1,17 @@
-import 'package:final_year_project/screens/main_drawer.dart';
-
-import '../components/body_text.dart';
+import 'package:final_year_project/components/main_drawer.dart';
+import 'package:final_year_project/screens/posts/posts.dart';
 import 'package:flutter/material.dart';
-import '../components/round_button.dart';
-import '../constants.dart';
+import '../../components/round_button.dart';
 
-class PostComment extends StatefulWidget {
-  static const String id = 'post_comment_screen';
-  @override
-  _PostCommentState createState() => _PostCommentState();
-}
+class PostCompletion extends StatelessWidget {
+  static const String id = 'post_completion_screen';
 
-class _PostCommentState extends State<PostComment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green.shade100,
       appBar: AppBar(
-        title: Text('Post'),
+        title: Text('Successfully Posted'),
         backgroundColor: Colors.green.shade300,
       ),
       drawer: MainDrawer(),
@@ -29,10 +23,10 @@ class _PostCommentState extends State<PostComment> {
           children: <Widget>[
             Flexible(
               child: Text(
-                'Share how you are feeling?',
+                'Post was successfully posted ✅',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 45.0,
+                  fontSize: 25.0,
                   color: Colors.green.shade600,
                   fontWeight: FontWeight.w900,
                 ),
@@ -41,33 +35,17 @@ class _PostCommentState extends State<PostComment> {
             SizedBox(
               height: 48.0,
             ),
-            TextField(
-              keyboardType: TextInputType.emailAddress,
-              onChanged: (value) {},
-              decoration: TextFieldStyle.copyWith(
-                hintText: 'Write a Comment :)',
-              ),
-            ),
             SizedBox(
               height: 8.0,
             ),
             RoundButton(
               // colour: Colors.lightGreen,
               colour: Colors.lightGreen,
-              title: 'Post',
+              title: 'Return to posts',
               onPressed: () {
-                //TODO post functionality
+                Navigator.pushNamed(context, BlogPosts.id);
               },
               //Go to login screen.
-            ),
-            SizedBox(
-              height: 100.0,
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: BodyText(
-                '(Remember it is anonymous)',
-              ),
             ),
           ],
         ),

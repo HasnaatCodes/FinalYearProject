@@ -1,8 +1,9 @@
-import 'package:final_year_project/screens/main_drawer.dart';
+import 'package:final_year_project/components/main_drawer.dart';
 import 'package:flutter/material.dart';
 import '../../components/info_button.dart';
 import '../../components/body_text.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:final_year_project/screens/posts/post_comment.dart';
 
 class GeneralHelp extends StatefulWidget {
   static const String id = 'general_help';
@@ -84,7 +85,7 @@ class _GeneralHelpState extends State<GeneralHelp> {
             InfoButton(
               text: 'Share a comment',
               onPressed: () {
-                //TODO link to the posts page
+                Navigator.pushNamed(context, PostComment.id);
               },
             ),
             SizedBox(

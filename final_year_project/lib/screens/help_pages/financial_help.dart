@@ -1,4 +1,4 @@
-import 'package:final_year_project/screens/main_drawer.dart';
+import 'package:final_year_project/components/main_drawer.dart';
 import 'package:flutter/material.dart';
 import '../../components/info_button.dart';
 import '../../components/body_text.dart';

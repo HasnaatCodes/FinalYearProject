@@ -1,23 +1,30 @@
 import 'package:final_year_project/screens/help_pages/financial_help.dart';
 import 'package:final_year_project/screens/help_pages/general_help.dart';
-import 'package:final_year_project/screens/post_comment.dart';
+import 'package:final_year_project/screens/posts/posts.dart';
 import 'package:final_year_project/screens/welcome.dart';
+import '../screens/check_in.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'reason.dart';
 
-class MainDrawer extends StatelessWidget {
+FirebaseUser loggedInUser;
+
+class MainDrawer extends StatefulWidget {
+  @override
+  _MainDrawerState createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends State<MainDrawer> {
   final _auth = FirebaseAuth.instance;
-  FirebaseUser loggedInUser;
 
   @override
   void initState() {
+    super.initState();
     getCurrentUser();
   }
 
   void getCurrentUser() async {
     try {
-      final user = await _auth.currentUser();
+      final FirebaseUser user = await _auth.currentUser();
       if (user != null) {
         loggedInUser = user;
       }
@@ -44,24 +51,11 @@ class MainDrawer extends StatelessWidget {
                     margin: EdgeInsets.only(
                       top: 30.0,
                     ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage('images/logo.png'),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
                   ),
                   Text(
-                    'User Name',
+                    loggedInUser.email,
                     style: TextStyle(
                       fontSize: 22,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Text(
-                    'Email',
-                    style: TextStyle(
                       color: Colors.white,
                     ),
                   ),
@@ -78,9 +72,8 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              //TODO Sort out this button
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, NegativeReason.id);
+              Navigator.popUntil(context, (route) => false);
+              Navigator.pushNamed(context, CheckIn.id);
             },
           ),
           ListTile(
@@ -92,24 +85,14 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, PostComment.id);
+              Navigator.popUntil(context, (route) => false);
+              Navigator.pushNamed(context, BlogPosts.id);
             },
           ),
           ListTile(
             leading: Icon(Icons.messenger_outline_rounded),
             title: Text(
               'Messaging',
-              style: TextStyle(
-                fontSize: 18.0,
-              ),
-            ),
-            onTap: null,
-          ),
-          ListTile(
-            leading: Icon(Icons.help_outline_outlined),
-            title: Text(
-              'Help',
               style: TextStyle(
                 fontSize: 18.0,
               ),
@@ -125,35 +108,35 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              _auth.signOut();
-              Navigator.of(context).pop();
+              Navigator.popUntil(context, (route) => false);
               Navigator.pushNamed(context, Welcome.id);
+              _auth.signOut();
             },
           ),
           //Testing
           ListTile(
             leading: Icon(Icons.money),
             title: Text(
-              'Finance',
+              'Financial Help',
               style: TextStyle(
                 fontSize: 18.0,
               ),
             ),
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.popUntil(context, (route) => false);
               Navigator.pushNamed(context, FinancialHelp.id);
             },
           ),
           ListTile(
             leading: Icon(Icons.arrow_upward),
             title: Text(
-              'Stress',
+              'Stress Help',
               style: TextStyle(
                 fontSize: 18.0,
               ),
             ),
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.popUntil(context, (route) => false);
               Navigator.pushNamed(context, GeneralHelp.id);
             },
           ),

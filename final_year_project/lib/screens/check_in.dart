@@ -1,8 +1,10 @@
-import 'package:final_year_project/screens/main_drawer.dart';
+import 'package:final_year_project/components/main_drawer.dart';
+import 'package:final_year_project/screens/posts/post_comment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'reason.dart';
 import '../components/round_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CheckIn extends StatefulWidget {
   static const String id = 'check_in_screen';
@@ -11,6 +13,25 @@ class CheckIn extends StatefulWidget {
 }
 
 class _CheckInState extends State<CheckIn> {
+  final _auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    try {
+      final FirebaseUser user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,11 +83,9 @@ class _CheckInState extends State<CheckIn> {
             ),
             RoundButton(
               colour: Colors.green.shade400,
-              title: 'Positive 😄',
+              title: 'Calm 😄',
               onPressed: () {
-                // -> Go To Post Screen
-                //TODO set a positive screen message
-                //Navigator.pushNamed(context, NegativeReason.id);
+                Navigator.pushNamed(context, PostComment.id);
               },
             ),
           ],
