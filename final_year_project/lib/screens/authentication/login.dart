@@ -1,7 +1,7 @@
 import 'package:final_year_project/components/show_alert.dart';
 import 'package:final_year_project/screens/check_in.dart';
 import 'package:flutter/material.dart';
-import '../../components/round_button.dart';
+import '../../components/custom_button.dart';
 import '../../constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -75,43 +75,50 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: 24.0,
               ),
-              RoundButton(
-                // colour: Colors.lightGreen,
-                colour: Colors.lightGreen,
-                title: 'Log In',
-                onPressed: () async {
-                  //Show user a spinner so they can see it is in process
-                  setState(() {
-                    loadingSpinner = true;
-                  });
-                  //Sign the user in
-                  try {
-                    final user = await _auth.signInWithEmailAndPassword(
-                        email: email, password: password);
-                    if (user != null) {
-                      //Successfully logged in
-                      Navigator.popUntil(context, (route) => false);
-                      Navigator.pushNamed(context, CheckIn.id);
-                    }
-                  } catch (errorCode) {
-                    print(errorCode);
-                    setState(() {
-                      loadingSpinner = false;
-                      if (errorCode == 'ERROR_USER_NOT_FOUND') {
-                        error = 'Email not found';
-                      } else if (errorCode == 'ERROR_WRONG_PASSWORD') {
-                        error = 'Incorrect password';
-                      } else {
-                        error = errorCode;
+              CustomButton(
+                  // colour: Colors.lightGreen,
+                  colour: Colors.lightGreen,
+                  title: 'Log In',
+                  onPressed: () async {
+                    if (email == null || password == null) {
+                      setState(() {
+                        error = 'Fields cannot be empty';
+                      });
+                    } else {
+                      setState(() {
+                        loadingSpinner = true;
+                      });
+                      //Sign the user in
+                      try {
+                        final user = await _auth.signInWithEmailAndPassword(
+                            email: email, password: password);
+                        if (user != null) {
+                          //Successfully logged in
+                          Navigator.popUntil(context, (route) => false);
+                          Navigator.pushNamed(context, CheckIn.id);
+                        }
+                      } catch (e) {
+                        setState(() {
+                          // print(e);
+                          loadingSpinner = false;
+                          if (e.code == 'ERROR_USER_NOT_FOUND') {
+                            error = 'Email not found';
+                          } else if (e.code == 'ERROR_WRONG_PASSWORD') {
+                            error = 'Incorrect password';
+                          } else if (e.code == 'ERROR_INVALID_EMAIL') {
+                            error = 'Invalid email';
+                          } else {
+                            error = e.code;
+                          }
+                        });
                       }
-                    });
+                    }
                   }
-                },
-                //Go to login screen.
-              ),
-              SizedBox(
-                height: 65.0,
-              ),
+
+                  //Show user a spinner so they can see it is in process
+
+                  //Go to login screen.
+                  ),
               ShowAlertWidget(
                 error: error,
                 onPressed: () {

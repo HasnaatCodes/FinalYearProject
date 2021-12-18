@@ -1,5 +1,6 @@
 import 'package:final_year_project/screens/help_pages/financial_help.dart';
 import 'package:final_year_project/screens/help_pages/general_help.dart';
+import 'package:final_year_project/screens/help_pages/useful_contacts.dart';
 import 'package:final_year_project/screens/posts/posts.dart';
 import 'package:final_year_project/screens/welcome.dart';
 import '../screens/check_in.dart';
@@ -8,18 +9,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 FirebaseUser loggedInUser;
 
-class MainDrawer extends StatefulWidget {
+class CustomAppDrawer extends StatefulWidget {
   @override
-  _MainDrawerState createState() => _MainDrawerState();
+  _CustomAppDrawerState createState() => _CustomAppDrawerState();
 }
 
-class _MainDrawerState extends State<MainDrawer> {
+class _CustomAppDrawerState extends State<CustomAppDrawer> {
   final _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
-    super.initState();
     getCurrentUser();
+    super.initState();
   }
 
   void getCurrentUser() async {
@@ -99,20 +100,6 @@ class _MainDrawerState extends State<MainDrawer> {
             ),
             onTap: null,
           ),
-          ListTile(
-            leading: Icon(Icons.arrow_back),
-            title: Text(
-              'Logout',
-              style: TextStyle(
-                fontSize: 18.0,
-              ),
-            ),
-            onTap: () {
-              Navigator.popUntil(context, (route) => false);
-              Navigator.pushNamed(context, Welcome.id);
-              _auth.signOut();
-            },
-          ),
           //Testing
           ListTile(
             leading: Icon(Icons.money),
@@ -138,6 +125,33 @@ class _MainDrawerState extends State<MainDrawer> {
             onTap: () {
               Navigator.popUntil(context, (route) => false);
               Navigator.pushNamed(context, GeneralHelp.id);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.contact_mail_outlined),
+            title: Text(
+              'Useful Contacts',
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
+            ),
+            onTap: () {
+              Navigator.popUntil(context, (route) => false);
+              Navigator.pushNamed(context, UsefulContacts.id);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.arrow_back),
+            title: Text(
+              'Logout',
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
+            ),
+            onTap: () {
+              Navigator.popUntil(context, (route) => false);
+              Navigator.pushNamed(context, Welcome.id);
+              _auth.signOut();
             },
           ),
         ],

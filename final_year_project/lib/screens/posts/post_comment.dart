@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:final_year_project/components/main_drawer.dart';
+import 'package:final_year_project/components/custom_app_drawer.dart';
+import 'package:final_year_project/components/show_alert.dart';
 import 'package:final_year_project/screens/posts/post_completion.dart';
 import 'package:flutter/material.dart';
-import '../../components/round_button.dart';
+import '../../components/custom_button.dart';
 import '../../constants.dart';
 
 class PostComment extends StatefulWidget {
@@ -24,7 +25,7 @@ class _PostCommentState extends State<PostComment> {
         title: Text('Post'),
         backgroundColor: Colors.green.shade300,
       ),
-      drawer: MainDrawer(),
+      drawer: CustomAppDrawer(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -47,7 +48,6 @@ class _PostCommentState extends State<PostComment> {
                 height: 10.0,
               ),
               TextField(
-                keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {
                   title = value;
                 },
@@ -59,7 +59,6 @@ class _PostCommentState extends State<PostComment> {
                 height: 8.0,
               ),
               TextField(
-                keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {
                   textContent = value;
                 },
@@ -70,18 +69,21 @@ class _PostCommentState extends State<PostComment> {
               SizedBox(
                 height: 8.0,
               ),
-              RoundButton(
-                // colour: Colors.lightGreen,
+              CustomButton(
                 colour: Colors.lightGreen,
                 title: 'Post',
                 onPressed: () {
-                  _firestore.collection('Posts').add({
-                    'title': title,
-                    'content': textContent,
-                  });
-                  Navigator.pushNamed(context, PostCompletion.id);
+                  if (textContent == null || title == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Please fill in both text fields')));
+                  } else {
+                    _firestore.collection('Posts').add({
+                      'title': title,
+                      'content': textContent,
+                    });
+                    Navigator.pushNamed(context, PostCompletion.id);
+                  }
                 },
-                //Go to login screen.
               ),
               SizedBox(
                 height: 24.0,

@@ -1,7 +1,7 @@
 import 'package:final_year_project/screens/check_in.dart';
 import 'package:final_year_project/components/show_alert.dart';
 import 'package:flutter/material.dart';
-import '../../components/round_button.dart';
+import '../../components/custom_button.dart';
 import '../../constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -113,41 +113,49 @@ class _Registration extends State<Registration> {
               SizedBox(
                 height: 24.0,
               ),
-              RoundButton(
-                // colour: Colors.lightGreen,
-                colour: Colors.lightGreen,
-                title: 'Register',
-                onPressed: () async {
-                  setState(() {
-                    loadingSpinner = true;
-                  });
-                  //Only proceed once the user has been created
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-                    if (newUser != null) {
-                      //Successfully created User
-                      Navigator.popUntil(context, (route) => false);
-                      Navigator.pushNamed(context, CheckIn.id);
-                    }
-                    setState(() {
-                      loadingSpinner = false;
-                    });
-                  } catch (e) {
-                    print(e.code);
-                    setState(() {
-                      loadingSpinner = false;
-                      if (e.code == 'ERROR_INVALID_EMAIL') {
-                        error = 'Invalid Email';
-                      } else if (e.code == 'ERROR_WEAK_PASSWORD') {
-                        error = 'Password too short. Minimum 6 characters';
-                      } else {
-                        error = e.message;
+              CustomButton(
+                  // colour: Colors.lightGreen,
+                  colour: Colors.lightGreen,
+                  title: 'Register',
+                  onPressed: () async {
+                    if (email == null || password == null) {
+                      setState(() {
+                        error = 'Fields cannot be empty';
+                      });
+                    } else {
+                      setState(() {
+                        loadingSpinner = true;
+                      });
+                      //Only proceed once the user has been created
+                      try {
+                        final newUser =
+                            await _auth.createUserWithEmailAndPassword(
+                                email: email, password: password);
+                        if (newUser != null) {
+                          //Successfully created User
+                          Navigator.popUntil(context, (route) => false);
+                          Navigator.pushNamed(context, CheckIn.id);
+                        }
+                        setState(() {
+                          loadingSpinner = false;
+                        });
+                      } catch (e) {
+                        setState(() {
+                          print(e);
+                          loadingSpinner = false;
+                          if (e.code == 'ERROR_INVALID_EMAIL') {
+                            error = 'Invalid Email';
+                          } else if (e.code == 'ERROR_MISSING_EMAIL') {
+                            error = 'Please enter an email address';
+                          } else if (e.code == 'ERROR_WEAK_PASSWORD') {
+                            error = 'Password too short. Minimum 6 characters';
+                          } else {
+                            error = e.code;
+                          }
+                        });
                       }
-                    });
-                  }
-                },
-              ),
+                    }
+                  }),
               Flexible(
                 child: ShowAlertWidget(
                   error: error,

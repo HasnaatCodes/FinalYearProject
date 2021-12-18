@@ -12,8 +12,11 @@ class InfoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      child: Text(
-        text,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+        child: Text(
+          text,
+        ),
       ),
       style: ButtonStyle(
         padding: MaterialStateProperty.all<EdgeInsets>(

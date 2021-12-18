@@ -1,0 +1,273 @@
+@startuml
+set namespaceSeparator ::
+
+class "final_year_project::screens::check_in.dart::CheckIn" {
+  {static} +String* id
+  +_CheckInState* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "final_year_project::screens::check_in.dart::CheckIn"
+
+class "final_year_project::screens::check_in.dart::_CheckInState" {
+  -FirebaseAuth* _auth
+  +void initState()
+  +void getCurrentUser()
+  +Widget* build()
+}
+
+"final_year_project::screens::check_in.dart::_CheckInState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth*"
+"flutter::src::widgets::framework.dart::State" <|-- "final_year_project::screens::check_in.dart::_CheckInState"
+
+class "final_year_project::screens::posts::post_details.dart::PostDetails" {
+  {static} +String* id
+  +DocumentSnapshot* snapshot
+  +String* reference
+  +_PostDetailsState* createState()
+}
+
+"final_year_project::screens::posts::post_details.dart::PostDetails" o-- "cloud_firestore::cloud_firestore.dart::DocumentSnapshot*"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "final_year_project::screens::posts::post_details.dart::PostDetails"
+
+class "final_year_project::screens::posts::post_details.dart::_PostDetailsState" {
+  +TextEditingController* textController
+  +String* messageText
+  -FirebaseAuth* _auth
+  +void initState()
+  +void getCurrentUser()
+  +Widget* build()
+}
+
+"final_year_project::screens::posts::post_details.dart::_PostDetailsState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController*"
+"final_year_project::screens::posts::post_details.dart::_PostDetailsState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth*"
+"flutter::src::widgets::framework.dart::State" <|-- "final_year_project::screens::posts::post_details.dart::_PostDetailsState"
+
+class "final_year_project::screens::posts::post_details.dart::PostStream" {
+  +DocumentSnapshot* snapshot
+  +Widget* build()
+}
+
+"final_year_project::screens::posts::post_details.dart::PostStream" o-- "cloud_firestore::cloud_firestore.dart::DocumentSnapshot*"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::screens::posts::post_details.dart::PostStream"
+
+class "final_year_project::screens::posts::post_details.dart::ReplyStream" {
+  +String* reference
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::screens::posts::post_details.dart::ReplyStream"
+
+class "final_year_project::screens::posts::post_details.dart::ReplyStyle" {
+  +String* text
+  +bool* isMe
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::screens::posts::post_details.dart::ReplyStyle"
+
+class "final_year_project::screens::posts::posts.dart::BlogPosts" {
+  {static} +String* id
+  +_BlogPostsState* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "final_year_project::screens::posts::posts.dart::BlogPosts"
+
+class "final_year_project::screens::posts::posts.dart::_BlogPostsState" {
+  +bool* searchState
+  +StreamSubscription<QuerySnapshot*>* subscription
+  +List<DocumentSnapshot*>* snapshot
+  +CollectionReference* collectionReference
+  +void initState()
+  +void passData()
+  +void searchText()
+  +Widget* build()
+}
+
+"final_year_project::screens::posts::posts.dart::_BlogPostsState" o-- "dart::async::StreamSubscription<QuerySnapshot*>*"
+"final_year_project::screens::posts::posts.dart::_BlogPostsState" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference*"
+"flutter::src::widgets::framework.dart::State" <|-- "final_year_project::screens::posts::posts.dart::_BlogPostsState"
+
+class "final_year_project::screens::posts::post_comment.dart::PostComment" {
+  {static} +String* id
+  +_PostCommentState* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "final_year_project::screens::posts::post_comment.dart::PostComment"
+
+class "final_year_project::screens::posts::post_comment.dart::_PostCommentState" {
+  -Firestore* _firestore
+  +String* title
+  +String* textContent
+  -GlobalKey<FormState*>* _formKey
+  +Widget* build()
+}
+
+"final_year_project::screens::posts::post_comment.dart::_PostCommentState" o-- "cloud_firestore::cloud_firestore.dart::Firestore*"
+"final_year_project::screens::posts::post_comment.dart::_PostCommentState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState*>*"
+"flutter::src::widgets::framework.dart::State" <|-- "final_year_project::screens::posts::post_comment.dart::_PostCommentState"
+
+class "final_year_project::screens::posts::post_completion.dart::PostCompletion" {
+  {static} +String* id
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::screens::posts::post_completion.dart::PostCompletion"
+
+class "final_year_project::screens::welcome.dart::Welcome" {
+  {static} +String* id
+  +_WelcomeState* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "final_year_project::screens::welcome.dart::Welcome"
+
+class "final_year_project::screens::welcome.dart::_WelcomeState" {
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "final_year_project::screens::welcome.dart::_WelcomeState"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "final_year_project::screens::welcome.dart::_WelcomeState"
+
+class "final_year_project::screens::reason.dart::NegativeReason" {
+  {static} +String* id
+  +_NegativeReasonState* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "final_year_project::screens::reason.dart::NegativeReason"
+
+class "final_year_project::screens::reason.dart::_NegativeReasonState" {
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "final_year_project::screens::reason.dart::_NegativeReasonState"
+
+class "final_year_project::screens::help_pages::useful_contacts.dart::UsefulContacts" {
+  {static} +String* id
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::screens::help_pages::useful_contacts.dart::UsefulContacts"
+
+class "final_year_project::screens::help_pages::general_help.dart::GeneralHelp" {
+  {static} +String* id
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::screens::help_pages::general_help.dart::GeneralHelp"
+
+class "final_year_project::screens::help_pages::financial_help.dart::FinancialHelp" {
+  {static} +String* id
+  +_FinancialHelpState* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "final_year_project::screens::help_pages::financial_help.dart::FinancialHelp"
+
+class "final_year_project::screens::help_pages::financial_help.dart::_FinancialHelpState" {
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "final_year_project::screens::help_pages::financial_help.dart::_FinancialHelpState"
+
+class "final_year_project::screens::authentication::login.dart::Login" {
+  {static} +String* id
+  +_LoginState* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "final_year_project::screens::authentication::login.dart::Login"
+
+class "final_year_project::screens::authentication::login.dart::_LoginState" {
+  -FirebaseAuth* _auth
+  +bool* loadingSpinner
+  +String* email
+  +String* password
+  +String* error
+  +Widget* build()
+}
+
+"final_year_project::screens::authentication::login.dart::_LoginState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth*"
+"flutter::src::widgets::framework.dart::State" <|-- "final_year_project::screens::authentication::login.dart::_LoginState"
+
+class "final_year_project::screens::authentication::registration.dart::Registration" {
+  {static} +String* id
+  +_Registration* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "final_year_project::screens::authentication::registration.dart::Registration"
+
+class "final_year_project::screens::authentication::registration.dart::_Registration" {
+  -FirebaseAuth* _auth
+  +bool* loadingSpinner
+  +String* email
+  +String* password
+  +String* status
+  +List<String*>* statusList
+  +String* error
+  +Widget* build()
+}
+
+"final_year_project::screens::authentication::registration.dart::_Registration" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth*"
+"flutter::src::widgets::framework.dart::State" <|-- "final_year_project::screens::authentication::registration.dart::_Registration"
+
+class "final_year_project::main.dart::MyApp" {
+  +String* initialRoute
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::main.dart::MyApp"
+
+class "final_year_project::main.dart::UserAuth" {
+  -FirebaseAuth* _auth
+  +Future<bool*>* isSignedIn()
+}
+
+"final_year_project::main.dart::UserAuth" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth*"
+
+class "final_year_project::components::show_alert.dart::ShowAlertWidget" {
+  +String* error
+  +Function* onPressed
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::components::show_alert.dart::ShowAlertWidget"
+
+class "final_year_project::components::custom_app_drawer.dart::CustomAppDrawer" {
+  +_CustomAppDrawerState* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "final_year_project::components::custom_app_drawer.dart::CustomAppDrawer"
+
+class "final_year_project::components::custom_app_drawer.dart::_CustomAppDrawerState" {
+  -FirebaseAuth* _auth
+  +void initState()
+  +void getCurrentUser()
+  +Widget* build()
+}
+
+"final_year_project::components::custom_app_drawer.dart::_CustomAppDrawerState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth*"
+"flutter::src::widgets::framework.dart::State" <|-- "final_year_project::components::custom_app_drawer.dart::_CustomAppDrawerState"
+
+class "final_year_project::components::info_button.dart::InfoButton" {
+  +String* text
+  +Function* onPressed
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::components::info_button.dart::InfoButton"
+
+class "final_year_project::components::custom_button.dart::CustomButton" {
+  +Color* colour
+  +String* title
+  +Function* onPressed
+  +Widget* build()
+}
+
+"final_year_project::components::custom_button.dart::CustomButton" o-- "dart::ui::Color*"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::components::custom_button.dart::CustomButton"
+
+class "final_year_project::components::body_text.dart::BodyText" {
+  +String* text
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "final_year_project::components::body_text.dart::BodyText"
+
+
+@enduml

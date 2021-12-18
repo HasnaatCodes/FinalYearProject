@@ -1,5 +1,5 @@
+import 'package:final_year_project/screens/help_pages/useful_contacts.dart';
 import 'package:final_year_project/screens/posts/post_details.dart';
-import 'package:final_year_project/screens/posts/expanded_posts.dart';
 import 'package:final_year_project/screens/posts/post_completion.dart';
 import 'package:final_year_project/screens/posts/posts.dart';
 
@@ -38,16 +38,16 @@ class MyApp extends StatelessWidget {
       routes: {
         Welcome.id: (context) => Welcome(),
         '/': (context) => Welcome(),
+        '/home': (context) => CheckIn(),
+        UsefulContacts.id: (context) => UsefulContacts(),
         Login.id: (context) => Login(),
         Registration.id: (context) => Registration(),
         CheckIn.id: (context) => CheckIn(),
         NegativeReason.id: (context) => NegativeReason(),
-        '/home': (context) => CheckIn(),
         FinancialHelp.id: (context) => FinancialHelp(),
         GeneralHelp.id: (context) => GeneralHelp(),
         PostComment.id: (context) => PostComment(),
         BlogPosts.id: (context) => BlogPosts(),
-        ExpandedPosts.id: (context) => ExpandedPosts(),
         PostCompletion.id: (context) => PostCompletion(),
         PostDetails.id: (context) => PostDetails(),
       },

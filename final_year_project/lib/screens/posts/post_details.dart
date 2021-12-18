@@ -8,8 +8,8 @@ FirebaseUser loggedInUser;
 
 class PostDetails extends StatefulWidget {
   static const String id = 'post_details_screen';
-  DocumentSnapshot snapshot;
-  String reference;
+  final DocumentSnapshot snapshot;
+  final String reference;
   PostDetails({this.snapshot, this.reference});
 
   @override
@@ -103,7 +103,7 @@ class _PostDetailsState extends State<PostDetails> {
 }
 
 class PostStream extends StatelessWidget {
-  DocumentSnapshot snapshot;
+  final DocumentSnapshot snapshot;
 
   PostStream({this.snapshot});
 
@@ -159,7 +159,7 @@ class PostStream extends StatelessWidget {
 }
 
 class ReplyStream extends StatelessWidget {
-  String reference;
+  final String reference;
   ReplyStream({this.reference});
   @override
   Widget build(BuildContext context) {

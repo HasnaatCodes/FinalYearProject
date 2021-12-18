@@ -1,7 +1,7 @@
-import 'package:final_year_project/components/main_drawer.dart';
+import 'package:final_year_project/components/custom_app_drawer.dart';
 import 'package:final_year_project/screens/posts/posts.dart';
 import 'package:flutter/material.dart';
-import '../../components/round_button.dart';
+import '../../components/custom_button.dart';
 
 class PostCompletion extends StatelessWidget {
   static const String id = 'post_completion_screen';
@@ -14,7 +14,7 @@ class PostCompletion extends StatelessWidget {
         title: Text('Successfully Posted'),
         backgroundColor: Colors.green.shade300,
       ),
-      drawer: MainDrawer(),
+      drawer: CustomAppDrawer(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -38,7 +38,7 @@ class PostCompletion extends StatelessWidget {
             SizedBox(
               height: 8.0,
             ),
-            RoundButton(
+            CustomButton(
               // colour: Colors.lightGreen,
               colour: Colors.lightGreen,
               title: 'Return to posts',

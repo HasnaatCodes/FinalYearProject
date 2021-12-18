@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'authentication/registration.dart';
 import 'authentication/login.dart';
-import '../components/round_button.dart';
+import '../components/custom_button.dart';
 
 class Welcome extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -38,7 +38,7 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
             SizedBox(
               height: 48.0,
             ),
-            RoundButton(
+            CustomButton(
               colour: Colors.lightGreen,
               title: 'Log In',
               onPressed: () {
@@ -46,7 +46,7 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
                 Navigator.pushNamed(context, Login.id);
               },
             ),
-            RoundButton(
+            CustomButton(
               colour: Colors.green,
               title: 'Register',
               onPressed: () {

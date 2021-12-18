@@ -1,4 +1,4 @@
-import 'package:final_year_project/components/main_drawer.dart';
+import 'package:final_year_project/components/custom_app_drawer.dart';
 import 'package:flutter/material.dart';
 import '../../components/info_button.dart';
 import '../../components/body_text.dart';
@@ -19,7 +19,7 @@ class _FinancialHelpState extends State<FinancialHelp> {
         title: Text('Financial Help'),
         backgroundColor: Colors.green.shade300,
       ),
-      drawer: MainDrawer(),
+      drawer: CustomAppDrawer(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(

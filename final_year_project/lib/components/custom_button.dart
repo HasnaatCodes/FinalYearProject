@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class RoundButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final Color colour;
   final String title;
   final Function onPressed;
 
-  RoundButton({
+  CustomButton({
     this.colour,
     this.title,
     @required this.onPressed,

@@ -2,8 +2,7 @@ import 'dart:async';
 import 'package:final_year_project/screens/posts/post_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:final_year_project/components/main_drawer.dart';
-import 'dart:async';
+import 'package:final_year_project/components/custom_app_drawer.dart';
 import 'package:final_year_project/screens/posts/post_details.dart';
 
 class BlogPosts extends StatefulWidget {
@@ -13,7 +12,6 @@ class BlogPosts extends StatefulWidget {
 }
 
 class _BlogPostsState extends State<BlogPosts> {
-  final _firestore = Firestore.instance;
   bool searchState = false;
   StreamSubscription<QuerySnapshot> subscription;
   List<DocumentSnapshot> snapshot;
@@ -90,7 +88,7 @@ class _BlogPostsState extends State<BlogPosts> {
                 ),
         ],
       ),
-      drawer: MainDrawer(),
+      drawer: CustomAppDrawer(),
       body: Container(
         decoration: BoxDecoration(),
         child: ListView.builder(
@@ -124,10 +122,9 @@ class _BlogPostsState extends State<BlogPosts> {
                             child: Text(
                               snapshot[index].data['title'],
                               style: TextStyle(
-                                fontSize: 22.0,
+                                fontSize: 18.0,
                                 color: Colors.white,
                               ),
-                              maxLines: 1,
                             ),
                             onTap: () {
                               //we want to pass data to details screen

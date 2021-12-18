@@ -1,9 +1,9 @@
-import 'package:final_year_project/components/main_drawer.dart';
+import 'package:final_year_project/components/custom_app_drawer.dart';
 import 'package:final_year_project/screens/posts/post_comment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'reason.dart';
-import '../components/round_button.dart';
+import '../components/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class CheckIn extends StatefulWidget {
@@ -40,55 +40,82 @@ class _CheckInState extends State<CheckIn> {
         title: Text('Check In'),
         backgroundColor: Colors.green.shade300,
       ),
-      drawer: MainDrawer(),
+      drawer: CustomAppDrawer(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    'How are you feeling today?',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 45.0,
-                      color: Colors.green.shade600,
-                      fontWeight: FontWeight.w900,
+        child: Center(
+          child: ListView(
+            shrinkWrap: true,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      'How are you feeling today?',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 45.0,
+                        color: Colors.green.shade600,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 48.0,
-            ),
-            RoundButton(
-              colour: Colors.red.shade300,
-              title: 'Stressed 😓',
-              onPressed: () {
-                // -> Go To Reason Screen
-                Navigator.pushNamed(context, NegativeReason.id);
-              },
-            ),
-            RoundButton(
-              colour: Colors.red.shade300,
-              title: 'Anxious 😥',
-              onPressed: () {
-                // -> Go To Reason Screen
-                Navigator.pushNamed(context, NegativeReason.id);
-              },
-            ),
-            RoundButton(
-              colour: Colors.green.shade400,
-              title: 'Calm 😄',
-              onPressed: () {
-                Navigator.pushNamed(context, PostComment.id);
-              },
-            ),
-          ],
+                ],
+              ),
+              SizedBox(
+                height: 48.0,
+              ),
+              CustomButton(
+                colour: Colors.red.shade300,
+                title: 'Down 😔',
+                onPressed: () {
+                  // -> Go To Reason Screen
+                  Navigator.pushNamed(context, NegativeReason.id);
+                },
+              ),
+              CustomButton(
+                colour: Colors.red.shade300,
+                title: 'Stressed 😓',
+                onPressed: () {
+                  // -> Go To Reason Screen
+                  Navigator.pushNamed(context, NegativeReason.id);
+                },
+              ),
+              CustomButton(
+                colour: Colors.red.shade300,
+                title: 'Depressed 😪',
+                onPressed: () {
+                  // -> Go To Reason Screen
+                  Navigator.pushNamed(context, NegativeReason.id);
+                },
+              ),
+              CustomButton(
+                colour: Colors.red.shade300,
+                title: 'Overwhelmed 😣',
+                onPressed: () {
+                  // -> Go To Reason Screen
+                  Navigator.pushNamed(context, NegativeReason.id);
+                },
+              ),
+              CustomButton(
+                colour: Colors.red.shade300,
+                title: 'Anxious 😥',
+                onPressed: () {
+                  // -> Go To Reason Screen
+                  Navigator.pushNamed(context, NegativeReason.id);
+                },
+              ),
+              CustomButton(
+                colour: Colors.green.shade400,
+                title: 'Calm 😄',
+                onPressed: () {
+                  Navigator.pushNamed(context, PostComment.id);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

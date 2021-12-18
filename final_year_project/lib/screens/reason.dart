@@ -1,10 +1,10 @@
-import 'package:final_year_project/components/main_drawer.dart';
+import 'package:final_year_project/components/custom_app_drawer.dart';
 import 'package:final_year_project/screens/posts/post_comment.dart';
 
 import '../screens/help_pages/financial_help.dart';
 import '../screens/help_pages/general_help.dart';
 import 'package:flutter/material.dart';
-import '../components/round_button.dart';
+import '../components/custom_button.dart';
 
 class NegativeReason extends StatefulWidget {
   static const String id = 'reason_screen';
@@ -21,7 +21,7 @@ class _NegativeReasonState extends State<NegativeReason> {
         title: Text('Reason'),
         backgroundColor: Colors.green.shade300,
       ),
-      drawer: MainDrawer(),
+      drawer: CustomAppDrawer(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -46,28 +46,28 @@ class _NegativeReasonState extends State<NegativeReason> {
             SizedBox(
               height: 48.0,
             ),
-            RoundButton(
+            CustomButton(
               colour: Colors.red.shade300,
               title: 'Financial Stress',
               onPressed: () {
                 Navigator.pushNamed(context, FinancialHelp.id);
               },
             ),
-            RoundButton(
+            CustomButton(
               colour: Colors.red.shade300,
               title: 'Academic Stress',
               onPressed: () {
                 Navigator.pushNamed(context, GeneralHelp.id);
               },
             ),
-            RoundButton(
+            CustomButton(
               colour: Colors.red.shade300,
               title: 'Loneliness',
               onPressed: () {
                 Navigator.pushNamed(context, PostComment.id);
               },
             ),
-            RoundButton(
+            CustomButton(
               colour: Colors.red.shade300,
               title: 'Other',
               onPressed: () {
